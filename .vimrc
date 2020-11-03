@@ -54,10 +54,22 @@ set nu
 set wildmode=full
 set fillchars=vert:\ 
 
+" Disable visual bell
+set visualbell
+set t_vb=
+
 " Plugin management using vim-plugs
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
+
+" Auto install vim-plug if its not installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/vimplgins')
 
 " Make sure you use single quotes

@@ -2,7 +2,8 @@
 
 This is my personal config files and it's currently under construction.
 Configs that I've been keeping track of is listed below.
-Detail of my configs is explained in the file itself, and it is self-explainatory (hopefuly).
+Details of my configs is explained in the file itself, and it is self-explainatory (hopefuly).
+`init.sh` is the shell script I've been working on to automate the process of setting up all the config files.
 
 ## zsh
 
@@ -30,7 +31,7 @@ The path where vim load its config file is:
 ~/.vimrc
 ```
 
-and  nvim keeps its config file as
+and nvim keeps its config file as
 
 ```shell
 ~/.config/nvim/init.vim
