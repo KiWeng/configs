@@ -13,6 +13,8 @@ The path where zsh load its config file is:
 ~/.zshrc
 ```
 
+Since I'm using oh-my-zsh, you should install oh-my-zsh first.
+
 ## Alacritty
 
 The path where alacritty load its config file is:
@@ -39,7 +41,7 @@ and nvim keeps its config file as
 
 adding these lines of code into your `init.vim` will help nvim use your `.vimrc`:
 
-```vimscript
+```vim script
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath=&runtimepath
 source ~/.vimrc

@@ -9,7 +9,7 @@ program_exists() {
     return 0
 }
 
-# Configuring .vimrc file for vim
+# Configuring .vimrc file for vim.
 #if program_exists vim; then
     #echo "vim is installed"
 #fi
@@ -19,12 +19,29 @@ if [ -e ~/.vimrc ]; then
 fi
 ln -s ${PWD}/.vimrc ~/.vimrc
 
+# Configuring init.vim for nvim, so that nvim can use all the vim configs.
 if [ -e ~/.config/nvim/init.vim ]; then
     echo -n ""
 else
     mkdir -p ~/.config/nvim
 fi
 
-echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" >> ~/.config/nvim/init.vim
-echo "let &packpath=&runtimepath" >> ~/.config/nvim/init.vim
-echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
+#echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" >> ~/.config/nvim/init.vim
+#echo "let &packpath=&runtimepath" >> ~/.config/nvim/init.vim
+#echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
+
+# Configuring zsh, supposed oh-my-zsh is installed.
+if [ -e ~/.zshrc ]; then
+    echo "~/.zshrc exsits, removing it."
+    rm ~/.zshrc
+fi
+ln -s ${PWD}/.zshrc ~/.zshrc
+
+# Installing some of the external zsh plugins.
+git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+
+
+
