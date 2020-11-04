@@ -43,12 +43,13 @@ syntax on
 filetype plugin on
 runtime macros/matchit.vim
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+" Adding python support for nvim
+let g:python3_host_prog="/usr/bin/python3"
 
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 set history=200
-" set lines=30 columns=100
 set nocompatible
 set nu
 set wildmode=full
@@ -126,6 +127,8 @@ Plug 'tpope/vim-surround'
 "Plug 'godlygeek/tabular'
 " Markdown support
 "Plug 'plasticboy/vim-markdown'
+" vim-format, formatting your file, pynvim required.
+"Plug 'Chiel92/vim-autoformat'
 
 
 " Initialize plugin system
