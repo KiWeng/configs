@@ -5,6 +5,14 @@ Configs that I've been keeping track of is listed below.
 Details of my configs is explained in the file itself, and it is self-explainatory (hopefuly).
 `init.sh` is the shell script I've been working on to automate the process of setting up all the config files.
 
+## git
+
+The path where zsh load its config file is:
+
+```shell
+~/.gitconfig
+```
+
 ## zsh
 
 The path where zsh load its config file is:
@@ -54,4 +62,5 @@ The path where ideaVim load its config file is:
 ```shell
 ~/.ideavim
 ```
+
 
