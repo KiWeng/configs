@@ -1,6 +1,5 @@
 " vim pluging simulation
 set surround
-" wocoanima
 set commentary
 
 set shiftwidth=4
