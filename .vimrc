@@ -104,23 +104,27 @@ call plug#begin('~/.vim/vimplgins')
 " Plug '~/my-prototype-plugin'
 
 " Airline
-Plug 'vim-airline/vim-airline'
+Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline.git'
 " Airline Themes
-Plug 'vim-airline/vim-airline-themes'
+Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline-themes.git'
 " Base16 color theme
-Plug 'chriskempson/base16-vim'
+Plug 'https://github.com.cnpmjs.org/chriskempson/base16-vim.git'
 " Haskell support
-Plug 'neovimhaskell/haskell-vim', { 'for': 'Haskell' }
-" Nerdcommenter
-Plug 'preservim/nerdcommenter'
-" Goyo
-Plug 'junegunn/goyo.vim'
-" Rainbow Parenthesis
-Plug 'kien/rainbow_parentheses.vim'
-" Auto-Pairs
-Plug 'jiangmiao/auto-pairs'
+Plug 'https://github.com.cnpmjs.org/neovimhaskell/haskell-vim.git', { 'for': 'Haskell' }
+" Rust support
+Plug 'https://github.com.cnpmjs.org/rust-lang/rust.vim.git', { 'for': 'Rust' }
 " Surround.vim
-Plug 'tpope/vim-surround'
+Plug 'https://github.com.cnpmjs.org/tpope/vim-surround.git'
+" Nerdcommenter
+Plug 'https://github.com.cnpmjs.org/preservim/nerdcommenter.git'
+" Goyo
+Plug 'https://github.com.cnpmjs.org/junegunn/goyo.vim.git'
+" Rainbow Parenthesis
+Plug 'https://github.com.cnpmjs.org/kien/rainbow_parentheses.vim.git'
+" Auto-Pairs
+Plug 'https://github.com.cnpmjs.org/jiangmiao/auto-pairs.git'
+" Surround.vim
+Plug 'https://github.com.cnpmjs.org/tpope/vim-surround.git'
 " Tabnine
 "Plug 'codota/tabnine-vim'
 " Prequesition of vim-markdown, tabular
