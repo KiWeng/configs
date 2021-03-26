@@ -110,9 +110,9 @@ Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline-themes.git'
 " Base16 color theme
 Plug 'https://github.com.cnpmjs.org/chriskempson/base16-vim.git'
 " Haskell support
-Plug 'https://github.com.cnpmjs.org/neovimhaskell/haskell-vim.git', { 'for': 'Haskell' }
+Plug 'https://github.com.cnpmjs.org/neovimhaskell/haskell-vim.git', { 'for': 'haskell' }
 " Rust support
-Plug 'https://github.com.cnpmjs.org/rust-lang/rust.vim.git', { 'for': 'Rust' }
+Plug 'https://github.com.cnpmjs.org/rust-lang/rust.vim.git', { 'for': 'rust' }
 " Surround.vim
 Plug 'https://github.com.cnpmjs.org/tpope/vim-surround.git'
 " Nerdcommenter
@@ -155,12 +155,16 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 " Nerdcomment settings
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
 
 " Rainbow parenthesis settings
 let g:rbpt_colorpairs = [

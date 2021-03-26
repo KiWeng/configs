@@ -26,7 +26,7 @@ if [ -e ~/.config/nvim/init.vim ]; then
 else
     mkdir -p ~/.config/nvim
 fi
-ln -s ${PWD}/init.vim
+ln -s ${PWD}/init.vim ~/.config/nvim/init.vim
 
 # Configuring zsh, supposed oh-my-zsh is installed.
 if [ -e ~/.zshrc ]; then
@@ -41,10 +41,18 @@ git clone https://github.com.cnpmjs.org/zsh-users/ \
 git clone https://github.com.cnpmjs.org/zsh-users/ \
     zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# Configuring git, supposed oh-my-zsh is installed.
+# Configuring git, supposing oh-my-zsh is installed.
 
 if [ -e ~/.gitconfig ]; then
     echo "~/.gitconfig exsits, removing it."
     rm ~/.gitconfig
 fi
 ln -s ${PWD}/.gitconfig ~/.gitconfig
+
+# Configuring tmux
+
+if [ -e ~/.tmux.conf ]; then
+    echo "~/.tmux.conf exsits, removing it."
+    rm ~/.tmux.conf
+fi
+ln -s ${PWD}/.tmux.conf ~/.tmux.conf
