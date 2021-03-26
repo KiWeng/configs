@@ -1,5 +1,51 @@
 " Vim with all enhancements
 "source $VIMRUNTIME/vimrc_example.vim
+"
+
+"" START OF NEO VIM FOR VSCODE
+"" THEME CHANGER
+
+"" THEME CHANGER
+"function! SetCursorLineNrColorInsert(mode)
+"    " Insert mode: blue
+"    if a:mode == "i"
+"        call VSCodeNotify('nvim-theme.insert')
+
+"    " Replace mode: red
+"    elseif a:mode == "r"
+"        call VSCodeNotify('nvim-theme.replace')
+"    endif
+"endfunction
+
+
+"function! SetCursorLineNrColorVisual()
+"    set updatetime=0
+"    call VSCodeNotify('nvim-theme.visual')
+"endfunction
+
+"vnoremap <silent> <expr> <SID>SetCursorLineNrColorVisual SetCursorLineNrColorVisual()
+"nnoremap <silent> <script> v v<SID>SetCursorLineNrColorVisual
+"nnoremap <silent> <script> V V<SID>SetCursorLineNrColorVisual
+"nnoremap <silent> <script> <C-v> <C-v><SID>SetCursorLineNrColorVisual
+
+"function! SetCursorLineNrColorVisual()
+"    set updatetime=0
+"    call VSCodeNotify('nvim-theme.visual')
+"endfunction
+
+"vnoremap <silent> <expr> <SID>SetCursorLineNrColorVisual SetCursorLineNrColorVisual()
+"nnoremap <silent> <script> v v<SID>SetCursorLineNrColorVisual
+"nnoremap <silent> <script> V V<SID>SetCursorLineNrColorVisual
+"nnoremap <silent> <script> <C-v> <C-v><SID>SetCursorLineNrColorVisual
+
+
+"augroup CursorLineNrColorSwap
+"    autocmd!
+"    autocmd InsertEnter * call SetCursorLineNrColorInsert(v:insertmode)
+"    autocmd InsertLeave * call VSCodeNotify('nvim-theme.normal')
+"    autocmd CursorHold * call VSCodeNotify('nvim-theme.normal')
+"augroup END
+"" END OF NEO VIM FOR VSCODE
 
 " Use the internal diff if available.
 " Otherwise use the special 'diffexpr' for Windows.
@@ -110,7 +156,8 @@ Plug 'vim-airline/vim-airline-themes'
 " Base16 color theme
 Plug 'chriskempson/base16-vim'
 " Haskell support
-Plug 'neovimhaskell/haskell-vim', { 'for': 'Haskell' }
+Plug 'neovimhaskell/haskell-vim'
+", { 'for': 'Haskell' }
 " Nerdcommenter
 Plug 'preservim/nerdcommenter'
 " Goyo
@@ -142,13 +189,20 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_theme='powerlineish'
 
 "haskell-vim settings
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+let g:haskell_enable_quantification = 1
+" to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1
+" to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1
+" to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1
+" to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1   
+" to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1
+" to enable highlighting of `static`
+let g:haskell_backpack = 1
+" to enable highlighting of backpack keywords
 
 " Nerdcomment settings
 " Enable trimming of trailing whitespace when uncommenting
