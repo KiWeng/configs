@@ -54,10 +54,14 @@ set nocompatible
 set nu
 set wildmode=full
 set fillchars=vert:\
+set shortmess+=c    "Disable completion info at statuesbar"
 
 " Disable visual bell
 set visualbell
 set t_vb=
+
+" Disalbe deoplete's preview window
+set completeopt-=preview
 
 " Plugin management using vim-plugs
 " Specify a directory for plugins
@@ -142,12 +146,25 @@ Plug 'https://github.com.cnpmjs.org/godlygeek/tabular.git', {'for': 'markdown'}
 " Markdown support
 Plug 'https://github.com.cnpmjs.org/plasticboy/vim-markdown.git', {'for': 'markdown'}
 
-" Language server support for vim
-Plug 'https://github.com.cnpmjs.org/autozimu/LanguageClient-neovim.git', {
-    \'branch': 'next',
-    \'do': 'bash install.sh',
-    \}
+" " Language server support for vim
+" Plug 'https://github.com.cnpmjs.org/autozimu/LanguageClient-neovim.git', {
+"     \'branch': 'next',
+"     \'do': 'bash install.sh',
+"     \}
 
+" ALE
+Plug 'https://github.com.cnpmjs.org/dense-analysis/ale.git'
+
+" Auto completion using deoplete.nvim
+" ATENTION deoplet.nvim requires python3 
+if has('nvim')
+    Plug 'https://github.com.cnpmjs.org/Shougo/deoplete.nvim.git', {'do': 'UpdateRemotePlugins'}
+else
+    Plug 'https://github.com.cnpmjs.org/Shougo/deoplete.nvim.git'
+    Plug 'https://github.com.cnpmjs.org/roxma/nvim-yarp.git'
+    Plug 'https://github.com.cnpmjs.org/roxma/vim-hug-neovim-rpc.git'
+endif
+let g:deoplete#enable_at_startup = 1
 
 " Initialize plugin system
 call plug#end()
@@ -208,6 +225,29 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " vim-markdown settings
 let g:vim_markdown_math = 1
+
+" deoplete.nvim settings
+call deoplete#custom#option('sources', {
+    \'_': ['ale'],
+    \})
+call deoplete#custom#option({
+    \'auto_complete_delay': 200,
+    \'max_list': 10,
+    \})
+
+" " LanguageClient configurations
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust':[  '~/.cargo/bin/rustup', 'run', 'stable', 'rls' ]
+"     \ }
+" " Mapping
+" nmap <silent> gd <Plug>(lcn-definition)
+" nmap <F5> <Plug>(lcn-menu)
+
+" ALE configurations
+let g:ale_sign_column_always = 1
+" let g:ale_completion_enable = 1
+" set omnifunc=ale#completion#OmniFunc
+nmap  gd <Plug>(ale_go_to_definition)
 
 " Gvim specific settings
 if has("gui_running")
