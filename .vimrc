@@ -53,7 +53,7 @@ set history=200
 set nocompatible
 set nu
 set wildmode=full
-set fillchars=vert:\ 
+set fillchars=vert:\
 
 " Disable visual bell
 set visualbell
@@ -100,39 +100,53 @@ call plug#begin('~/.vim/vimplgins')
 " Plugin outside ~/.vim/plugged with post-update hook
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" Unmanaged plugin (manually installed and updated)
-" Plug '~/my-prototype-plugin'
-
 " Airline
 Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline.git'
+
 " Airline Themes
 Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline-themes.git'
+
 " Base16 color theme
 Plug 'https://github.com.cnpmjs.org/chriskempson/base16-vim.git'
+
 " Haskell support
 Plug 'https://github.com.cnpmjs.org/neovimhaskell/haskell-vim.git', { 'for': 'haskell' }
+
 " Rust support
 Plug 'https://github.com.cnpmjs.org/rust-lang/rust.vim.git', { 'for': 'rust' }
+
 " Surround.vim
 Plug 'https://github.com.cnpmjs.org/tpope/vim-surround.git'
+
 " Nerdcommenter
 Plug 'https://github.com.cnpmjs.org/preservim/nerdcommenter.git'
+
 " Goyo
 Plug 'https://github.com.cnpmjs.org/junegunn/goyo.vim.git'
+
 " Rainbow Parenthesis
 Plug 'https://github.com.cnpmjs.org/kien/rainbow_parentheses.vim.git'
+
 " Auto-Pairs
 Plug 'https://github.com.cnpmjs.org/jiangmiao/auto-pairs.git'
+
 " Surround.vim
 Plug 'https://github.com.cnpmjs.org/tpope/vim-surround.git'
-" Tabnine
-"Plug 'codota/tabnine-vim'
+
+" Tabnine ### WARNING this might take AGES to install ###
+"Plug 'https://github.com.cnpmjs.org/codota/tabnine-vim.git'
+
 " Prequesition of vim-markdown, tabular
-"Plug 'godlygeek/tabular'
+Plug 'https://github.com.cnpmjs.org/godlygeek/tabular.git', {'for': 'markdown'}
+
 " Markdown support
-"Plug 'plasticboy/vim-markdown'
-" vim-format, formatting your file, pynvim required.
-"Plug 'Chiel92/vim-autoformat'
+Plug 'https://github.com.cnpmjs.org/plasticboy/vim-markdown.git', {'for': 'markdown'}
+
+" Language server support for vim
+Plug 'https://github.com.cnpmjs.org/autozimu/LanguageClient-neovim.git', {
+    \'branch': 'next',
+    \'do': 'bash install.sh',
+    \}
 
 
 " Initialize plugin system
@@ -163,7 +177,7 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
+" Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
 " Rainbow parenthesis settings
@@ -197,9 +211,9 @@ let g:vim_markdown_math = 1
 
 " Gvim specific settings
 if has("gui_running")
-	colorscheme base16-summerfruit-dark
-	"set guifont=JetBrains\ Mono:h13
-	set guioptions=
-	"set renderoptions=type:directx
-	set encoding=utf-8
+    colorscheme base16-summerfruit-dark
+    "set guifont=JetBrains\ Mono:h13
+    set guioptions=
+    "set renderoptions=type:directx
+    set encoding=utf-8
 endif
