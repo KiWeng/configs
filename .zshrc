@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -105,3 +105,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+
+# Exporting qemu for rCores
+export PATH=$PATH:/home/kevin/qemu-5.0.0
+export PATH=$PATH:/home/kevin/qemu-5.0.0/riscv64-softmmu
+export PATH=$PATH:/home/kevin/qemu-5.0.0/riscv64-linux-user
