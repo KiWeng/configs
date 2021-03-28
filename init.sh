@@ -14,21 +14,19 @@ program_exists() {
     #echo "vim is installed"
 #fi
 if [ -e ~/.vimrc ]; then
-    echo "~/.vimrc exsits, removing it."
+    echo ".vimrc exsits, removing it."
     rm ~/.vimrc
 fi
 ln -s ${PWD}/.vimrc ~/.vimrc
 
 # Configuring init.vim for nvim, so that nvim can use all the vim configs.
 if [ -e ~/.config/nvim/init.vim ]; then
-    echo -n ""
+    echo "init.vim exsits, removing it."
+    rm ~/.config/nvim/init.vim
 else
     mkdir -p ~/.config/nvim
 fi
-
-#echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" >> ~/.config/nvim/init.vim
-#echo "let &packpath=&runtimepath" >> ~/.config/nvim/init.vim
-#echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
+ln -s ${PWD}/init.vim ~/.config/nvim/init.vim
 
 # Configuring zsh, supposed oh-my-zsh is installed.
 if [ -e ~/.zshrc ]; then
@@ -38,13 +36,23 @@ fi
 ln -s ${PWD}/.zshrc ~/.zshrc
 
 # Installing some of the external zsh plugins.
-git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com.cnpmjs.org/zsh-users/ \
+    zsh-autosuggestions ${ZSH_CUSTOM:-~.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com.cnpmjs.org/zsh-users/ \
+    zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# Configuring git, supposed oh-my-zsh is installed.
+# Configuring git, supposing oh-my-zsh is installed.
 
 if [ -e ~/.gitconfig ]; then
     echo "~/.gitconfig exsits, removing it."
     rm ~/.gitconfig
 fi
 ln -s ${PWD}/.gitconfig ~/.gitconfig
+
+# Configuring tmux
+
+if [ -e ~/.tmux.conf ]; then
+    echo "~/.tmux.conf exsits, removing it."
+    rm ~/.tmux.conf
+fi
+ln -s ${PWD}/.tmux.conf ~/.tmux.conf

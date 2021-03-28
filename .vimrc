@@ -99,11 +99,15 @@ set history=200
 set nocompatible
 set nu
 set wildmode=full
-set fillchars=vert:\ 
+set fillchars=vert:\
+set shortmess+=c    "Disable completion info at statuesbar"
 
 " Disable visual bell
 set visualbell
 set t_vb=
+
+" Disalbe deoplete's preview window
+set completeopt-=preview
 
 " Plugin management using vim-plugs
 " Specify a directory for plugins
@@ -146,37 +150,67 @@ call plug#begin('~/.vim/vimplgins')
 " Plugin outside ~/.vim/plugged with post-update hook
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" Unmanaged plugin (manually installed and updated)
-" Plug '~/my-prototype-plugin'
-
 " Airline
-Plug 'vim-airline/vim-airline'
-" Airline Themes
-Plug 'vim-airline/vim-airline-themes'
-" Base16 color theme
-Plug 'chriskempson/base16-vim'
-" Haskell support
-Plug 'neovimhaskell/haskell-vim'
-", { 'for': 'Haskell' }
-" Nerdcommenter
-Plug 'preservim/nerdcommenter'
-" Goyo
-Plug 'junegunn/goyo.vim'
-" Rainbow Parenthesis
-Plug 'kien/rainbow_parentheses.vim'
-" Auto-Pairs
-Plug 'jiangmiao/auto-pairs'
-" Surround.vim
-Plug 'tpope/vim-surround'
-" Tabnine
-"Plug 'codota/tabnine-vim'
-" Prequesition of vim-markdown, tabular
-"Plug 'godlygeek/tabular'
-" Markdown support
-"Plug 'plasticboy/vim-markdown'
-" vim-format, formatting your file, pynvim required.
-"Plug 'Chiel92/vim-autoformat'
+Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline.git'
 
+" Airline Themes
+Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline-themes.git'
+
+" Base16 color theme
+Plug 'https://github.com.cnpmjs.org/chriskempson/base16-vim.git'
+
+" Haskell support
+Plug 'https://github.com.cnpmjs.org/neovimhaskell/haskell-vim.git', { 'for': 'haskell' }
+
+" Rust support
+Plug 'https://github.com.cnpmjs.org/rust-lang/rust.vim.git', { 'for': 'rust' }
+
+" Surround.vim
+Plug 'https://github.com.cnpmjs.org/tpope/vim-surround.git'
+
+" Nerdcommenter
+Plug 'https://github.com.cnpmjs.org/preservim/nerdcommenter.git'
+
+" Goyo
+Plug 'https://github.com.cnpmjs.org/junegunn/goyo.vim.git'
+
+" Rainbow Parenthesis
+Plug 'https://github.com.cnpmjs.org/kien/rainbow_parentheses.vim.git'
+
+" Auto-Pairs
+Plug 'https://github.com.cnpmjs.org/jiangmiao/auto-pairs.git'
+
+" Surround.vim
+Plug 'https://github.com.cnpmjs.org/tpope/vim-surround.git'
+
+" Tabnine ### WARNING this might take AGES to install ###
+"Plug 'https://github.com.cnpmjs.org/codota/tabnine-vim.git'
+
+" Prequesition of vim-markdown, tabular
+Plug 'https://github.com.cnpmjs.org/godlygeek/tabular.git', {'for': 'markdown'}
+
+" Markdown support
+Plug 'https://github.com.cnpmjs.org/plasticboy/vim-markdown.git', {'for': 'markdown'}
+
+" " Language server support for vim
+" Plug 'https://github.com.cnpmjs.org/autozimu/LanguageClient-neovim.git', {
+"     \'branch': 'next',
+"     \'do': 'bash install.sh',
+"     \}
+
+" ALE
+Plug 'https://github.com.cnpmjs.org/dense-analysis/ale.git'
+
+" Auto completion using deoplete.nvim
+" ATENTION deoplet.nvim requires python3 
+if has('nvim')
+    Plug 'https://github.com.cnpmjs.org/Shougo/deoplete.nvim.git', {'do': 'UpdateRemotePlugins'}
+else
+    Plug 'https://github.com.cnpmjs.org/Shougo/deoplete.nvim.git'
+    Plug 'https://github.com.cnpmjs.org/roxma/nvim-yarp.git'
+    Plug 'https://github.com.cnpmjs.org/roxma/vim-hug-neovim-rpc.git'
+endif
+let g:deoplete#enable_at_startup = 1
 
 " Initialize plugin system
 call plug#end()
@@ -205,12 +239,16 @@ let g:haskell_backpack = 1
 " to enable highlighting of backpack keywords
 
 " Nerdcomment settings
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
-let g:NERDToggleCheckAllLines = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
 
 " Rainbow parenthesis settings
 let g:rbpt_colorpairs = [
@@ -241,11 +279,34 @@ au Syntax * RainbowParenthesesLoadBraces
 " vim-markdown settings
 let g:vim_markdown_math = 1
 
+" deoplete.nvim settings
+call deoplete#custom#option('sources', {
+    \'_': ['ale'],
+    \})
+call deoplete#custom#option({
+    \'auto_complete_delay': 200,
+    \'max_list': 10,
+    \})
+
+" " LanguageClient configurations
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust':[  '~/.cargo/bin/rustup', 'run', 'stable', 'rls' ]
+"     \ }
+" " Mapping
+" nmap <silent> gd <Plug>(lcn-definition)
+" nmap <F5> <Plug>(lcn-menu)
+
+" ALE configurations
+let g:ale_sign_column_always = 1
+" let g:ale_completion_enable = 1
+" set omnifunc=ale#completion#OmniFunc
+nmap  gd <Plug>(ale_go_to_definition)
+
 " Gvim specific settings
 if has("gui_running")
-	colorscheme base16-summerfruit-dark
-	"set guifont=JetBrains\ Mono:h13
-	set guioptions=
-	"set renderoptions=type:directx
-	set encoding=utf-8
+    colorscheme base16-summerfruit-dark
+    "set guifont=JetBrains\ Mono:h13
+    set guioptions=
+    "set renderoptions=type:directx
+    set encoding=utf-8
 endif

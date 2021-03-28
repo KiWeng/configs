@@ -63,4 +63,10 @@ The path where ideaVim load its config file is:
 ~/.ideavim
 ```
 
+## tmux
 
+The path where tmux load its config file is:
+
+```shell
+~/.tmux.conf
+```
