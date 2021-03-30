@@ -2,51 +2,6 @@
 "source $VIMRUNTIME/vimrc_example.vim
 "
 
-"" START OF NEO VIM FOR VSCODE
-"" THEME CHANGER
-
-"" THEME CHANGER
-"function! SetCursorLineNrColorInsert(mode)
-"    " Insert mode: blue
-"    if a:mode == "i"
-"        call VSCodeNotify('nvim-theme.insert')
-
-"    " Replace mode: red
-"    elseif a:mode == "r"
-"        call VSCodeNotify('nvim-theme.replace')
-"    endif
-"endfunction
-
-
-"function! SetCursorLineNrColorVisual()
-"    set updatetime=0
-"    call VSCodeNotify('nvim-theme.visual')
-"endfunction
-
-"vnoremap <silent> <expr> <SID>SetCursorLineNrColorVisual SetCursorLineNrColorVisual()
-"nnoremap <silent> <script> v v<SID>SetCursorLineNrColorVisual
-"nnoremap <silent> <script> V V<SID>SetCursorLineNrColorVisual
-"nnoremap <silent> <script> <C-v> <C-v><SID>SetCursorLineNrColorVisual
-
-"function! SetCursorLineNrColorVisual()
-"    set updatetime=0
-"    call VSCodeNotify('nvim-theme.visual')
-"endfunction
-
-"vnoremap <silent> <expr> <SID>SetCursorLineNrColorVisual SetCursorLineNrColorVisual()
-"nnoremap <silent> <script> v v<SID>SetCursorLineNrColorVisual
-"nnoremap <silent> <script> V V<SID>SetCursorLineNrColorVisual
-"nnoremap <silent> <script> <C-v> <C-v><SID>SetCursorLineNrColorVisual
-
-
-"augroup CursorLineNrColorSwap
-"    autocmd!
-"    autocmd InsertEnter * call SetCursorLineNrColorInsert(v:insertmode)
-"    autocmd InsertLeave * call VSCodeNotify('nvim-theme.normal')
-"    autocmd CursorHold * call VSCodeNotify('nvim-theme.normal')
-"augroup END
-"" END OF NEO VIM FOR VSCODE
-
 " Use the internal diff if available.
 " Otherwise use the special 'diffexpr' for Windows.
 if &diffopt !~# 'internal'
@@ -106,6 +61,9 @@ set shortmess+=c    "Disable completion info at statuesbar"
 set visualbell
 set t_vb=
 
+set cursorline
+hi CursorLine cterm=NONE ctermbg=black
+
 " Disalbe deoplete's preview window
 set completeopt-=preview
 
@@ -156,8 +114,8 @@ Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline.git'
 " Airline Themes
 Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline-themes.git'
 
-" Base16 color theme
-Plug 'https://github.com.cnpmjs.org/chriskempson/base16-vim.git'
+" " Base16 color theme
+" Plug 'https://github.com.cnpmjs.org/chriskempson/base16-vim.git'
 
 " Haskell support
 Plug 'https://github.com.cnpmjs.org/neovimhaskell/haskell-vim.git', { 'for': 'haskell' }
@@ -202,7 +160,7 @@ Plug 'https://github.com.cnpmjs.org/plasticboy/vim-markdown.git', {'for': 'markd
 Plug 'https://github.com.cnpmjs.org/dense-analysis/ale.git'
 
 " Auto completion using deoplete.nvim
-" ATENTION deoplet.nvim requires python3 
+" ATENTION deoplet.nvim requires python3
 if has('nvim')
     Plug 'https://github.com.cnpmjs.org/Shougo/deoplete.nvim.git', {'do': 'UpdateRemotePlugins'}
 else
@@ -220,7 +178,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 "Set airline theme
-let g:airline_theme='powerlineish'
+" let g:airlie_theme='powerlineish'
 
 "haskell-vim settings
 let g:haskell_enable_quantification = 1
@@ -231,7 +189,7 @@ let g:haskell_enable_arrowsyntax = 1
 " to enable highlighting of `proc`
 let g:haskell_enable_pattern_synonyms = 1
 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1   
+let g:haskell_enable_typeroles = 1
 " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1
 " to enable highlighting of `static`
