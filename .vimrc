@@ -1,6 +1,5 @@
 " Vim with all enhancements
 "source $VIMRUNTIME/vimrc_example.vim
-"
 
 " Use the internal diff if available.
 " Otherwise use the special 'diffexpr' for Windows.
@@ -44,6 +43,7 @@ syntax on
 filetype plugin on
 runtime macros/matchit.vim
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
 " Adding python support for nvim
 let g:python3_host_prog="/usr/bin/python3"
 
@@ -54,23 +54,20 @@ set history=200
 set nocompatible
 set nu
 set wildmode=full
-set fillchars=vert:\
+set fillchars=vert:\ "THIS MEANS EMPTY!!"
 set shortmess+=c    "Disable completion info at statuesbar"
 
 " Disable visual bell
 set visualbell
 set t_vb=
 
+" Cursor line beautify
 set cursorline
-hi CursorLine cterm=NONE ctermbg=black
-
+" autocmd ColorScheme dracula hi LineNr cterm=NONE
+" autocmd ColorScheme dracula hi CursorLine cterm=NONE ctermbg=black guibg=black
+autocmd ColorScheme dracula hi CursorLineNr cterm=NONE ctermfg=blue guifg=blue
 " Disalbe deoplete's preview window
 set completeopt-=preview
-
-" Plugin management using vim-plugs
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
 
 " Auto install vim-plug if its not installed
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -80,33 +77,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/vimplgins')
-
-" Make sure you use single quotes
-
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-" Plug 'junegunn/vim-easy-align'
-
-" Any valid git URL is allowed
-" Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
-" Multiple Plug commands can be written in a single line using | separators
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-" On-demand loading
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
-" Using a non-master branch
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-" Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-" Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Airline
 Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline.git'
@@ -150,14 +120,11 @@ Plug 'https://github.com.cnpmjs.org/godlygeek/tabular.git', {'for': 'markdown'}
 " Markdown support
 Plug 'https://github.com.cnpmjs.org/plasticboy/vim-markdown.git', {'for': 'markdown'}
 
-" " Language server support for vim
-" Plug 'https://github.com.cnpmjs.org/autozimu/LanguageClient-neovim.git', {
-"     \'branch': 'next',
-"     \'do': 'bash install.sh',
-"     \}
-
 " ALE
 Plug 'https://github.com.cnpmjs.org/dense-analysis/ale.git'
+
+" Dracular theme
+Plug 'https://github.com.cnpmjs.org/dracula/vim.git', {'as': 'dracula'}
 
 " Auto completion using deoplete.nvim
 " ATENTION deoplet.nvim requires python3
@@ -172,6 +139,9 @@ let g:deoplete#enable_at_startup = 1
 
 " Initialize plugin system
 call plug#end()
+
+" Drauclua colorschem
+colorscheme dracula
 
 " airline-smart tab line, tweak the formatter
 let g:airline#extensions#tabline#enabled = 1
@@ -245,14 +215,6 @@ call deoplete#custom#option({
     \'auto_complete_delay': 200,
     \'max_list': 10,
     \})
-
-" " LanguageClient configurations
-" let g:LanguageClient_serverCommands = {
-"     \ 'rust':[  '~/.cargo/bin/rustup', 'run', 'stable', 'rls' ]
-"     \ }
-" " Mapping
-" nmap <silent> gd <Plug>(lcn-definition)
-" nmap <F5> <Plug>(lcn-menu)
 
 " ALE configurations
 let g:ale_sign_column_always = 1

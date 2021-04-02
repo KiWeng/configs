@@ -107,6 +107,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+# Overiding tmux's default settings
+export TERM=xterm-256color
+
 # Exporting qemu for rCores
 export PATH=$PATH:/home/kevin/qemu-5.0.0
 export PATH=$PATH:/home/kevin/qemu-5.0.0/riscv64-softmmu
